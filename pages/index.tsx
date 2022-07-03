@@ -1,16 +1,18 @@
+import { generatePrimeSync } from "crypto";
 import type { NextPage } from "next";
+import _ from "lodash";
 
 const Home: NextPage = () => {
-  type Person = {
-    name: string;
-    age?: number;
-    address?: string;
-    email: string;
+  const user = {
+    name: "kazu",
+    age: 24,
+    phone: 12345678,
+    address: "東京都",
   };
 
-  type User = "kazu" | "taro" | "hanako";
+  const userInfo = _.pick(user, ["name", "age"]);
 
-  type newUser = Exclude<User, "kazu">;
+  console.log(userInfo);
 
   return <div>aaa</div>;
 };
