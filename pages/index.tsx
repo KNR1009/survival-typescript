@@ -1,20 +1,28 @@
 import { generatePrimeSync } from "crypto";
 import type { NextPage } from "next";
-import _ from "lodash";
+import { useEffect, useState } from "react";
 
 const Home: NextPage = () => {
-  const user = {
-    name: "kazu",
-    age: 24,
-    phone: 12345678,
-    address: "東京都",
+  const [value, setValue] = useState<string[]>(["apple", "grape", "orange"]);
+
+  const onClick = () => {
+    const copy = [...value];
+    copy.push("追加");
+    setValue(copy);
   };
+  useEffect(() => {
+    console.log("更新されました");
+    console.log(value);
+  }, [value]);
 
-  const userInfo = _.pick(user, ["name", "age"]);
-
-  console.log(userInfo);
-
-  return <div>aaa</div>;
+  return (
+    <div>
+      {value.map((i, index) => (
+        <p key={index}>{i}</p>
+      ))}
+      <p onClick={onClick}>配列追加</p>
+    </div>
+  );
 };
 
 export default Home;
